@@ -1,0 +1,25 @@
+version: '3.4'
+
+services:
+  djangohackernewsapi:
+    build:
+      context: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./djangohackernewsapi:/djangohackernewsapi
+    command: >
+      sh -c "python3 manage.py migrate &&
+             python3 manage.py runserver 0.0.0.0:8000"
+  redis:
+    image: redis:alpine
+  celery:
+    restart: always
+    build:
+      context: .
+    command: celery -A djangohackernewsapi worker -l info
+    volumes:
+      - ./djangohackernewsapi:/djangohackernewsapi
+    depends_on:
+      - redis
+      - djangohackernewsapi

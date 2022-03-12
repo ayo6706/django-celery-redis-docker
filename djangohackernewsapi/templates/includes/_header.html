@@ -1,0 +1,24 @@
+
+
+<nav class="navbar navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand">HACKER NEWS CLONE</a>
+      <!-- search bar -->
+  <form
+    id="searchForm"
+    class="d-flex flex place-items-center bg-gray-100 rounded w-60 lg:w-80"
+  >
+    {% csrf_token %}
+    <div class="pl-4 pr-2 btn btn-outline-success">
+      <i class="fas fa-search"></i>
+    </div>
+    <input
+      type="text"
+      placeholder="Search for stories using title, author, text, and type of item"
+      class=" form-control me-2 "
+      id="storySearchBox"
+    />
+  </form>
+
+  </div>
+</nav>

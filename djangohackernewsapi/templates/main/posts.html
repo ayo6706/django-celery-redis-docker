@@ -1,0 +1,73 @@
+{% load custom_tags %}
+<!---->
+{% for post in posts %}
+
+<div class="col-md-4">
+    <div class="card my-4" style="width: 18rem;">
+        <div class="card-body">
+            <div class="my-4">
+                {% if post.post_type != 'comment' %}
+
+
+              <small class="font-bold text-gray-600">
+                Posted by <b> {{post.author}}</b> {{post.time|timesince}} ago
+              </small>
+                {% else %}
+              <small class="font-normal text-gray-400 text-sm">
+                by <b> {{post.author}} </b>, made {{post.time|timesince}} ago
+              </small>
+                {% endif %}
+
+            </div>
+
+            <div class="card-text text-muted">
+            {% if post.post_type == 'comment' %}
+              {% if post.text %}
+              <p class="text-sm font-normal">{{post.text|safe|truncatewords:12}}</p>
+              {% else %}
+              <p class="text-sm font-normal">This comment has no content</p>
+              {% endif %}
+              <!---->
+              {% else %}
+
+              <a class="text-2xl font-bold" href="{{post.get_absolute_url}}">{{post.title}}</a>
+              {% endif %}
+            </div>
+            <div class="sss" >
+
+
+                {% if post.post_type != 'comment' %}
+                {% else %}
+
+                <p class="text-sm">
+
+                <a href="{{ post.parent_id|post_url }}">
+                    In {{ post.parent_id|post_title|safe }}
+                  </a>
+                </p>
+                {% endif %}
+
+                <span class="btn btn-outline-primary "> {{post.post_type|capfirst}}</span>
+                <span> {{post.score}} </span>
+            </div>
+         </div>
+    </div>
+
+
+  </div>
+
+
+{% empty %}
+    <div
+      class="
+        bg-white
+        flex
+        mb-2
+        p-2
+        text-center
+      "
+      id="latestStoryEmpty"
+    >
+  <p class="text-2xl font-bold text-center">No latest story yet.</p>
+</div>
+{% endfor %}

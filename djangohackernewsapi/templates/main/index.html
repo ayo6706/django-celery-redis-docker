@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+<!--title-->
+{% block title %}{{page_title}}{% endblock title %}
+
+<!--content-->
+{% block content %}
+
+<!-- content -->
+<div class="container">
+
+
+  <div class="row">
+    <div class="col-8">.</div>
+    <div class="col-4">
+        <span class="rounded-full px-2 font-black text-white ml-auto" id="storiesCount">
+          {{posts.count}}
+        </span>
+    </div>
+
+     <div class="row">
+        <div class="col-8"> <div>
+                  <div>
+                    <div>FILTER BY</div>
+                  </div>
+                </div></div>
+        <div class="col-4">
+            <div>{% include './commons/_filters.html' %}</div>
+        </div>
+     </div>
+
+      <div class="grid grid-cols-1 gap-y-4">
+        <!-- Latest items -->
+        <div class="flex flex-col space-y-2">
+
+          <div class="flex flex-col space-y-4">
+
+            <!-- HackerNews posts -->
+            <div class="flex flex-col space-y-4 pb-8" id="hackerNewsStories">
+                <div class="container">
+
+                    <div class="row" id="stories"  >
+
+                        <!--post-->
+                        {% include './posts.html' %}
+
+                    </div>
+                </div>
+              <form class="ml-auto">
+                {% csrf_token %}
+                <a
+                  id="lazyLoadLink"
+                  href="javascript:void(0);"
+                  data-page="2"
+                  class="
+                    btn btn-primary btn-lg text-center
+                  "
+                >
+                  Load More Stories
+                </a>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
+
+{% endblock content %}

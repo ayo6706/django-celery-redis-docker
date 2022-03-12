@@ -1,0 +1,35 @@
+.filter-switch label {
+    cursor: pointer;
+}
+.filter-switch-item input:checked + label {
+    color: inherit;
+}
+.filter-switch-item input:not(:checked) + label {
+    --bg-opacity: 0;
+    box-shadow: none;
+}
+@media (max-width: 468px) {
+    #searchForm {
+        width: 30%;
+    }
+    #searchForm > input {
+        width: 100%;
+    }
+    .col-sm-screen {
+        flex-direction: column !important;
+        padding: 0.25rem;
+    }
+}
+.highlight {
+    color: rgba(245, 158, 11);
+    padding: 0.125rem;
+    border: 1px solid rgba(245, 158, 11, 0.5);
+    border-radius: 3px;
+}
+
+
+a{
+    color: aaa;
+    text-decoration: none;
+
+}
