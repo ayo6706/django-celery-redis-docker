@@ -17,7 +17,7 @@ services:
     restart: always
     build:
       context: .
-    command: celery -A djangohackernewsapi worker -l info
+    command: celery -A djangohackernewsapi worker -l info -B
     volumes:
       - ./djangohackernewsapi:/djangohackernewsapi
     depends_on:
